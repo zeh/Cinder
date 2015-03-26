@@ -77,9 +77,10 @@ class System {
 	  public:
 		const std::string&	getName() const { return mName; }
 		const std::string&	getIpAddress() const { return mIpAddress; }
+		//! Returns the subnet mask as a string in the form "255.255.240.0". On WinRT returns the prefix length.
 		const std::string&	getSubnetMask() const { return mSubnetMask; }
 
-		NetworkAdapter(const std::string &name, const std::string &ip, const std::string &subnetMask)
+		NetworkAdapter( const std::string &name, const std::string &ip, const std::string &subnetMask )
 			: mName( name ), mIpAddress( ip ), mSubnetMask( subnetMask ) {}
 
 	  private:
@@ -116,7 +117,7 @@ class System {
 
 inline std::ostream& operator<<( std::ostream &outp, const System::NetworkAdapter &adapter )
 {
-	outp << adapter.getName() << std::string(": IP: ") << adapter.getIpAddress();
+	outp << adapter.getName() << std::string(": IP: ") << adapter.getIpAddress() << " Subnet: " << adapter.getSubnetMask();
 	return outp;
 }
 
